@@ -1,0 +1,25 @@
+
+config FEATURE_AUDIO_BEEP
+	tristate "application audio_beep"
+	default y
+	---help---
+		Enable the audio_beep app
+
+if FEATURE_AUDIO_BEEP
+
+config FEATURE_AUDIO_BEEP_PROGNAME
+	string "Program name"
+	default "audio_beep"
+	---help---
+		This is the name of the program that will be use when the NSH ELF
+		program is installed.
+
+config FEATURE_AUDIO_BEEP_PRIORITY
+	int "audio_beep task priority"
+	default 100
+
+config FEATURE_AUDIO_BEEP_STACKSIZE
+	int "audio_beep stack size"
+	default 2048
+
+endif
