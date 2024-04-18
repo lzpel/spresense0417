@@ -1,0 +1,25 @@
+
+config FEATURE_ORGEL
+	tristate "application orgel"
+	default y
+	---help---
+		Enable the orgel app
+
+if FEATURE_ORGEL
+
+config FEATURE_ORGEL_PROGNAME
+	string "Program name"
+	default "orgel"
+	---help---
+		This is the name of the program that will be use when the NSH ELF
+		program is installed.
+
+config FEATURE_ORGEL_PRIORITY
+	int "orgel task priority"
+	default 100
+
+config FEATURE_ORGEL_STACKSIZE
+	int "orgel stack size"
+	default 2048
+
+endif

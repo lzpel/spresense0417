@@ -1,0 +1,14 @@
+
+include $(APPDIR)/Make.defs
+include $(SDKDIR)/Make.defs
+
+PROGNAME = $(CONFIG_FEATURE_ORGEL_PROGNAME)
+PRIORITY = $(CONFIG_FEATURE_ORGEL_PRIORITY)
+STACKSIZE = $(CONFIG_FEATURE_ORGEL_STACKSIZE)
+MODULE = $(CONFIG_FEATURE_ORGEL)
+
+ASRCS =
+CSRCS = generator.c
+MAINSRC = orgel_main.c
+
+include $(APPDIR)/Application.mk

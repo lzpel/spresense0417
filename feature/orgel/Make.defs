@@ -1,0 +1,4 @@
+
+ifneq ($(CONFIG_FEATURE_ORGEL),)
+CONFIGURED_APPS += orgel
+endif
