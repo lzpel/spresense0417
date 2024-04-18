@@ -88,6 +88,7 @@ class DefconfigManager:
             self.__add_category(c.category)
 
     def __get_defconfig(self, path):
+        print(os.path.abspath(path))
         files = glob.glob(os.path.join(path, "**/defconfig"), recursive=True)
         for f in files:
             c = DefconfigManager.DefconfigPath(f)
@@ -155,6 +156,7 @@ class Defconfig:
         if name is None:
             name = 'default'
         self.path = manager.get_fullpath(name)
+        print("__init__", self.path)
         self.man = manager
         self.load()
 
@@ -220,6 +222,7 @@ class Defconfig:
             self.__apply_config(opt)
         else:
             path = self.man.get_fullpath(opt)
+            print("apply", path)
             logging.debug("Apply defconfig %s" % path)
             with open(path, 'r') as f:
                 for line in f:

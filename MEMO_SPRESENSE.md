@@ -49,15 +49,20 @@ make -j
 tools/flash.sh -c COM5 nuttx.spk
 ```
 
-### clean
+## mytool.py
 
 shell scriptを用意した
 
 ```shell
-../distclean.sh
+../mytool.py clean
+../mytool.py mkapp ../feature/myhello
+tools/config.py -d ../feature feature/myhello
+# 以下同文
+make -j
+tools/flash.sh -c COM5 nuttx.spk
 ```
 
-## defconfigとソースコードの対応
+### defconfigとソースコードの対応
 
 sdk/tools/config.pyの91行目に
 ```python
