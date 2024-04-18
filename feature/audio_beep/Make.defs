@@ -1,4 +1,0 @@
-
-ifneq ($(CONFIG_FEATURE_AUDIO_BEEP),)
-CONFIGURED_APPS += audio_beep
-endif

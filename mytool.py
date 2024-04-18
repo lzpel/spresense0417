@@ -25,8 +25,7 @@ def mkapp(argv):
             call(root("sdk", "tools", "mkappsdir.py"), approot, "approot for {}".format(approot))
             call(root("sdk", "tools", "mkcmd.py"), "-d", approot, config_name[-1], "application {}".format(config_name[-1]))
             call("cp", "-r", os.path.join(appdir, "configs"), approot)
-            call("mv", os.path.join(appdir, "configs", "default", "defconfig"), appdir)
-            call("rm", "-r", os.path.join(appdir, "configs"))
+            call("rm", "-rf", os.path.join(appdir, "configs"))
 
 
 
