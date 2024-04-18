@@ -5,6 +5,7 @@
 Make.dep
 /*.a
 *.o
-
+# myfiles
+*.csv
 *.out
 *.wav

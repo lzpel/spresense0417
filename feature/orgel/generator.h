@@ -4,5 +4,5 @@
 
 #ifndef SPRESENSE0417_GENERATOR_H
 #define SPRESENSE0417_GENERATOR_H
-void test();
+void test(int seconds);
 #endif //SPRESENSE0417_GENERATOR_H

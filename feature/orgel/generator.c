@@ -17,9 +17,9 @@ void mainSound(float t, float s[2]){
     s[0]*=8;
     s[1]*=8;
 }
-void test(){
+void test(int seconds){
     FILE *fp = fopen("recording.csv","wt");
-    for(int i=0;i<44100*10;i++){
+    for(int i=0;i<44100*seconds;i++){
         float t=i/44100.0;
         float o[2]={0};
         mainSound(t, o);
