@@ -12,3 +12,15 @@ defconfigを主、menuconfigを従としてdefconfigを直接設定する
 
 System Type>CXD56xx Package Configuration>NX Audio Driver Support>CXD56 NuttX audio driver
 が
+
+```c
+        if (sample_period_counter >= SAMPLE_RATE)
+        {
+            /* The phase of the sine wave has reached one cycle */
+
+            sample_period_counter = sample_period_counter - SAMPLE_RATE;
+        }
+```
+
+ここを削ると再生時間が10秒→3秒になる．
+おそらく48000
