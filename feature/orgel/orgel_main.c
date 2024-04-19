@@ -59,6 +59,7 @@
 #include <math.h>
 #include <sys/ioctl.h>
 #include <nuttx/audio/audio.h>
+#include "generator.h"
 
 /*****************************************************************************
  * Pre-processor Definitions
@@ -83,6 +84,7 @@ static struct ap_buffer_s apbs[NUM_APB];  /* Audio buffer containers */
 static uint8_t buff[NUM_APB][SZ_APB];     /* Actual memory for audio data */
 static int frequency;
 static int sample_period_counter;
+static uint32_t orgel_sample_counter;
 
 /*****************************************************************************
  * Private Functions
@@ -115,6 +117,8 @@ static void generate_sinwave(FAR struct ap_buffer_s *apb)
          * <Channel 0 data> <Channel 1 data> .... <Channel N data>
          */
 
+        float s[2];
+        //mainSound((float)(++orgel_sample_counter)/SAMPLE_RATE, s);これを外すとすぐ止まる
         for (j = 0; j < CHANNEL_NUM; j++)
         {
             /* Set the same value to all channels */
@@ -394,6 +398,7 @@ int main(int argc, char **argv)
 
     printf("Start play %d Hz sin wave in 10sec.\n", frequency);
     sample_period_counter = 0;
+    orgel_sample_counter = 0;
     start_dma(spkfd);
 
     /* Main loop for handling message from device */
