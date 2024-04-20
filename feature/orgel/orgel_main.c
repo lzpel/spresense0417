@@ -108,22 +108,18 @@ static void generate_sinwave(FAR struct ap_buffer_s *apb)
     {
         /* Calcurate current sample sin value by frequency */
 
-        sinval =
-                sinf(2 * M_PI * sample_period_counter * frequency / SAMPLE_RATE);
-        sample_data = (int16_t)(sinval * 30000.f);
-
         /* Audio buffer data is stored as
          * <Channel 0 data> <Channel 1 data> .... <Channel N data>
          * <Channel 0 data> <Channel 1 data> .... <Channel N data>
          */
 
-        float s[2];
-        //mainSound((float)(++orgel_sample_counter)/SAMPLE_RATE, s);これを外すとすぐ止まる
+        short o[2];
+        mainSound((++orgel_sample_counter)*3, o);//これを外すとすぐ止まる
         for (j = 0; j < CHANNEL_NUM; j++)
         {
             /* Set the same value to all channels */
 
-            *data = sample_data;
+            *data = o[j%2];
             data++;
         }
 
