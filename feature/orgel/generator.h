@@ -5,5 +5,5 @@
 #ifndef SPRESENSE0417_GENERATOR_H
 #define SPRESENSE0417_GENERATOR_H
 void test(int seconds);
-void mainSound(float t, float s[2]);
+void mainSound(int s144000, short s[2]);
 #endif //SPRESENSE0417_GENERATOR_H
