@@ -24,13 +24,15 @@ class PyShell:
         return os.path.abspath(os.path.join(sys.argv[0], "..", *path_element))
 
     def main(self, *argv):
+        argv = argv or sys.argv[1:]
         if not argv:
-            argv = sys.argv[1:]
-        if argv[0] in self.subcommands:
+            print("no commands provided")
+        elif argv[0] in self.subcommands:
             self.subcommands[argv[0]](argv[1:])
+            return
         else:
             print("unrecognized commands: {}".format(" ".join(argv)))
-            print("available commands: {}".format(" ".join(self.subcommands)))
+        print("available commands: {}".format(" ".join(self.subcommands)))
 
 
 ps = PyShell()
@@ -59,7 +61,9 @@ def mkapp(argv):
             ps.command(ps.path_from_this("sdk", "tools", "mkappsdir.py"), approot, "approot for {}".format(approot))
             ps.command(ps.path_from_this("sdk", "tools", "mkcmd.py"), "-d", approot, config_name[-1],
                        "application {}".format(config_name[-1]))
-            ps.command("cp", "-r", os.path.join(appdir, "configs"), approot)
+            configdir = os.path.join(approot, "configs", config_name[-2], config_name[-1])
+            ps.command("mkdir", "-p", configdir)
+            ps.command("touch", os.path.join(configdir, "defconfig"))
             ps.command("rm", "-rf", os.path.join(appdir, "configs"))
 
 
