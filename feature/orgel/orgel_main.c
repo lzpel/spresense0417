@@ -406,7 +406,7 @@ int main(int argc, char **argv)
      * 500 times means 500 * 21.3ms = 10.2sec.
      */
 
-    for (i = 0; i < 500; i++)
+    for (i = 0; true; i++)
     {
         /* Handle a message from the MIC device */
 
