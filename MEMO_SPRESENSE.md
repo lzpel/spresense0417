@@ -70,3 +70,41 @@ sdk/tools/config.pyの91行目に
         print(os.path.abspath(path))
 ```
 と書けば
+
+### rust
+
+```
+rustup target add thumbv7em-none-eabihf
+```
+
+sdk/configs/examples/hello/defconfig
+```
++EXAMPLES_HELLO_RUST=y
+```
+と追記すればrustもコンパイルされる
+
+RUSTC:  hello_rust_main.rs error[E0463]: can't find crate for `core`
+  |
+  = note: the `thumbv7em-none-eabihf` target may not be installed
+  = help: consider downloading the target with `rustup target add thumbv7em-none-eabihf`
+
+```
+. ~/spresenseenv/setup
+# or arm-none-eabi-gcc: command not found
+./tools/config.py examples/hello
+make
+./tools/flash.sh -c COM5 nuttx.spk
+```
+
+```
+$ ~/Programs/plink -serial COM5 -sercfg 115200,8,1,N,N
+
+NuttShell (NSH) NuttX-12.3.0
+nsh> hello_rust
+Hello, Rust!!
+```
+
+https://github.com/apache/nuttx/pull/5566#issuecomment-1049585330
+```
+Understand. It's reasonable to enable the bare-metal usage in the first step. In the next step, I guess a special cargo with the embedded OS in mind may be a good option. It will be great that we can build up a packet manager for IoT space, since all devices can get the huge packet directly.
+```
